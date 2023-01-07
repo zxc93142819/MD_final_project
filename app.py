@@ -153,6 +153,9 @@ def return_audio(language , category , filename):
     # sound.export("./audios/output.mp3", format="mp3")
     # path_to_file ="output.aac"
     file_name = filename + ".wav"
+    print(language)
+    print(category)
+    print(file_name)
     return send_file(f'{language}/{category}/{file_name}',mimetype='audio/wav')
 
 if __name__ == "__main__":
