@@ -147,13 +147,13 @@ def webhook_handler():
 
 import io
 import pydub
-@app.route('/output', methods=['GET'])
-def upload():
+@app.route('/output/<language>/<category>/<filename>', methods=['GET'])
+def return_audio(language , category , filename):
     # sound = pydub.AudioSegment.from_wav("./audios/output.wav")
     # sound.export("./audios/output.mp3", format="mp3")
     # path_to_file ="output.aac"
-    path_to_file = "output.wav"
-    return send_file(f'audios/{path_to_file}',mimetype='audio/wav')
+    file_name = filename + ".wav"
+    return send_file(f'{language}/{category}/{file_name}',mimetype='audio/wav')
 
 if __name__ == "__main__":
     port = os.environ.get("PORT", 8000)

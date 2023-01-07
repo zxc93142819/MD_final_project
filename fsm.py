@@ -235,12 +235,14 @@ class TocMachine(GraphMachine):
         while text[end] != '\u3002':
             end -= 1
         text = text[begin : end + 1]
-        # text = "原因:尿路結石的成因非常複雜，簡而言之，主要是由於尿液內的結石結晶濃度過高（尿量變少）產生過飽和現象而形成的。二、當您到急診就醫時，請在急診觀察期間注意：1.若無特殊禁忌，需加強水份攝取（3000~4000㏄/天），尤其以白開水為佳，可稀釋尿液，幫助結石排出，減少復發的可能發生。2.定時解尿，請勿憋尿。3.注意尿液顏色的變化。三、當您返家休息時，請注意：1.  飲食應儘可能均衡及多變化，忌專食偏食：(1) 避免高草酸食物，如：扁豆、大黃、菠菜、甜菜、巧克力、 杏仁、花生、葡萄汁、橘子汁等。(2) 攝取足夠的鈣質（富含鈣質食物：豆干、牛奶、芥藍菜、乳酪、起司等）。(3) 適量維生素C的攝取以新鮮水果為主，不建議補充維生素C錠劑(大量的維生素C容易造成高草酸尿症，進而引起草酸鈣結石)。(4) 可由全榖根莖類、堅果類、肉類適量補充維生素B6(缺乏維生素B6也容易造成高草酸尿）。(5) 高普林也能讓尿酸生成增加，儘量避免大量吃含普林量較高的食材（如：肉汁、內臟類、香菇、蘆筍、小魚乾、牡蠣、紫菜等）。(6) 增加喝水的次數及水量(建議每天3000到4000㏄/天，若洗腎病人請諮詢醫師意見)。2.適度運動，如:慢跑、跳繩、游泳、上下樓梯，以利結石排出。3.返家後如有下列情形，請立即返院治療。（1）發燒、畏寒。（2）腰/腹痛、頻尿、解尿疼痛及困難、尿液混濁、血尿。( 3 )  嘔吐。四、請依醫師指示按時返院複診或泌尿科門診追蹤治療。"
-
-        # print(text)
         # tts(text , type)
-        mainUrl = "https://e1.pcloud.link/publink/show?code=XZlummZB4DOtKuiKpBMvvJeCvwpcyjDzQlX"
-        # AudioURL = 'https://cdn.voicetube.com/everyday_records/5131/1622711427.mp3'
+        language = type
+        category = search_category_name[choose_category_index[user_id]]
+        title = search_article_title[user_id][choose_article_id]
+        print(language)
+        print(category)
+        print(title)
+        mainUrl = "https://md-linebot.onrender.com/output/" + language + "/" + category + "/" + title
         message = AudioSendMessage(original_content_url = mainUrl , duration = 330 * len(text))
         line_bot_api = LineBotApi( channel_access_token )
         line_bot_api.reply_message(reply_token, message)
